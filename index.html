@@ -65,7 +65,7 @@
 
         /* ================= 內容容器 ================= */
         .container {
-            max-width: 600px; /* 限制最大寬度，讓電腦看也像手機版 */
+            max-width: 600px;
             margin: 0 auto;
             padding: 16px;
         }
@@ -135,6 +135,16 @@
             padding-top: 8px;
         }
 
+        .details-content ul {
+            padding-left: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .details-content li {
+            margin-bottom: 6px;
+        }
+
         /* ================= 提案卡片 ================= */
         .proposal-header {
             display: flex;
@@ -152,6 +162,7 @@
             border-radius: 4px;
             font-size: 0.85rem;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .proposal-title {
@@ -167,6 +178,11 @@
         .field-label {
             font-weight: bold;
             color: var(--primary-dark);
+        }
+
+        .proposal-field ul {
+            padding-left: 20px;
+            margin-top: 4px;
         }
 
         /* ================= 意見留言區 ================= */
@@ -199,9 +215,18 @@
             display: flex;
             gap: 8px;
             margin-top: 12px;
+            align-items: center;
         }
 
-        .comment-input {
+        .comment-name {
+            width: 80px;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .comment-text {
             flex-grow: 1;
             padding: 8px;
             border: 1px solid var(--border-color);
@@ -217,11 +242,12 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.9rem;
+            white-space: nowrap;
         }
 
         /* ================= 決議鎖定區 ================= */
         .resolution-box {
-            background-color: #FFF3E0; /* 淺橘色底表示待處理 */
+            background-color: #FFF3E0;
             border-radius: 6px;
             padding: 12px;
             margin-top: 12px;
@@ -270,59 +296,160 @@
 
     <div class="container">
         <div class="card info-board">
-            <div class="info-title">2026 年中壢站 5 月份營運委員會</div>
-            <div class="info-detail">📅 2026/05/05 (二) 12:20~14:20</div>
-            <div class="info-detail">📍 中壢站（實體+線上同步）</div>
-            <div class="info-detail">👤 輪值主席：林奕衡 ｜ 📝 紀錄：陳春菊</div>
+            <div class="info-title">2026 年中壢站 4 月份營運委員會</div>
+            <div class="info-detail">📅 2026/04/07 (二) 12:20~14:20</div>
+            <div class="info-detail">📍 中壢站（實體）</div>
+            <div class="info-detail">👤 輪值主席：洪瓊麟 ｜ 📝 紀錄：林奕衡</div>
+            <div class="info-detail" style="font-size: 0.85rem; margin-top: 8px;">
+                <strong>出席：</strong>林奕衡、陳春菊、盧均豪、洪瓊麟、羅玥玟
+            </div>
         </div>
 
         <details>
-            <summary>上次會議決議追蹤 (4/7)</summary>
+            <summary>確認上次會議追蹤</summary>
             <div class="details-content">
-                <p>✔️ <strong>區年會任務：</strong> 海報與遊戲設計已完成 (奕衡)。</p>
-                <p>🔄 <strong>環研院外推：</strong> 商品載運志工招募中，目前 1 人登記。</p>
+                <p>✔️ <strong>簡報區域改善：</strong>簡報區域已新增布幕，大幅改善投影效果 [cite: 3]。</p>
             </div>
         </details>
 
         <details>
-            <summary>各工作小組書面報告</summary>
+            <summary>報告事項總覽</summary>
             <div class="details-content">
-                <p><strong>【主委報告】</strong> 鄭雅文委員已接任新竹分社副主委。</p>
-                <p><strong>【站長報告】</strong> 詳見雲端附件資料夾。</p>
-                <p><strong>【編委會】</strong> 手機攝影課程報名額滿。</p>
+                <p><strong>【主委報告】</strong></p>
+                <ul>
+                    <li>林鳳梅委員因個人規劃辭職，於 2026/4/1 生效 [cite: 7]。</li>
+                    <li>中壢站區年會形式分社營委會已同意辦理 [cite: 8]。</li>
+                    <li>國家環境研究院外推計畫 (6/9) 獲准，須徵求志工 [cite: 9]。</li>
+                    <li>鄭雅文委員擔任新竹分社副主委，任期至 2027 年 3 月底 [cite: 10]。</li>
+                    <li>總社公告 2025 年優先考量「保留特別公積」之股息發放政策 [cite: 11]。</li>
+                    <li>台南分社洪姓社員事件調查及提請除名報告 [cite: 12]。</li>
+                    <li>關新站（6/8-6/9）與龍潭站（6/22-6/23）將辦理防災士訓練 [cite: 13]。</li>
+                    <li>2026 版活動月曆填報系統已上線 [cite: 14]。</li>
+                </ul>
+                <hr style="border:0; border-top:1px dashed #ccc; margin:12px 0;">
+                <p><strong>【工作小組報告】</strong></p>
+                <ul>
+                    <li><strong>生活材：</strong>四月份生產者面對面 4/14(正鴻)、4/21(向記) [cite: 16]。</li>
+                    <li><strong>教育委員會：</strong>食光森林探險隊已完成並產出結案報告 [cite: 17]。</li>
+                    <li><strong>編委會：</strong>手機攝影課程報名額滿，需求良好 [cite: 18]。</li>
+                </ul>
+                <hr style="border:0; border-top:1px dashed #ccc; margin:12px 0;">
+                <p><strong>【活動成果回饋】</strong></p>
+                <ul>
+                    <li><strong>食光森林探險隊：</strong>共 20 人參與 (10實體、10線上)，學員對戶外課程高度興趣 [cite: 23]。</li>
+                </ul>
             </div>
         </details>
 
         <div class="card">
             <div class="proposal-header">
                 <span class="proposal-id">第一案</span>
-                <span class="proposal-title">申請教委會社基課程經費</span>
+                <span class="proposal-title">申請中壢站教委會社基課程</span>
             </div>
             
             <div class="proposal-field">
-                <span class="field-label">提案人：</span>林奕衡
+                <span class="field-label">提案人：</span>林奕衡 [cite: 30]
             </div>
             <div class="proposal-field">
-                <span class="field-label">說　明：</span>為深化社員對「從產地到餐桌」的連結，擬辦理「食光森林探險隊」進階課程，帶領社員前往「樸爪農園」進行植物認識與實地種植體驗。
+                <span class="field-label">案　由：</span>20260620_食光森林探險隊：從紙上藍圖到土地實踐工作坊 [cite: 30]
             </div>
             <div class="proposal-field">
-                <span class="field-label">辦　法：</span>委員討論後投票表決通過，並至教委會申請經費。
+                <span class="field-label">說　明：</span>為深化社員對「從產地到餐桌」的連結，擬辦理「食光森林探險隊」進階課程，帶領社員前往「樸爪農園」進行植物認識與實地種植體驗（見企劃書） [cite: 30]。
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">辦　法：</span>委員討論後投票表決通過，並至教委會申請經費 [cite: 30]。
             </div>
 
             <div class="comments-section">
                 <div class="field-label" style="margin-bottom: 8px;">💬 會前意見交流：</div>
                 
-                <div class="comment-item">
-                    <span class="comment-author">陳春菊：</span>
-                    這個進階課程有包含交通接駁嗎？長輩可能不方便自行前往農園。
-                </div>
-                <div class="comment-item">
-                    <span class="comment-author">洪瓊麟：</span>
-                    建議可以提早開放線上報名，確認人數後再來租車。
-                </div>
-
                 <div class="comment-input-group">
-                    <input type="text" class="comment-input" placeholder="輸入您的會前意見...">
+                    <input type="text" class="comment-name" placeholder="姓名">
+                    <input type="text" class="comment-text" placeholder="輸入會前意見...">
+                    <button class="btn-small">送出</button>
+                </div>
+            </div>
+
+            <div class="resolution-box">
+                🔒 會議當天解鎖：由紀錄人填寫決議結果
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="proposal-header">
+                <span class="proposal-id">第二案</span>
+                <span class="proposal-title">中壢區年會任務分配</span>
+            </div>
+            
+            <div class="proposal-field">
+                <span class="field-label">提案人：</span>林奕衡 [cite: 32]
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">案　由：</span>2026年中壢區年會任務工項任務分配 (2026/5/9~5/16) [cite: 32]
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">說　明：</span>以下為工項及經費分配運用 [cite: 32]：
+                <ul>
+                    <li>獎品費用：6990 [cite: 32]</li>
+                    <li>獎品規劃勞務費：500 (徵求認領) [cite: 32]</li>
+                    <li>企劃勞務費：500 (奕衡已完成) [cite: 32]</li>
+                    <li>社務報告勞務費：500 (奕衡製作中) [cite: 32]</li>
+                    <li>問卷設計勞務費：500 (奕衡製作中) [cite: 32]</li>
+                    <li>海報設計勞務費：500 (奕衡已完成) [cite: 32]</li>
+                    <li>遊戲設計勞務費：500 (奕衡已完成) [cite: 32]</li>
+                </ul>
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">辦　法：</span>委員討論後投票表決通過並依決議辦理 [cite: 32]。
+            </div>
+
+            <div class="comments-section">
+                <div class="field-label" style="margin-bottom: 8px;">💬 會前意見交流：</div>
+                
+                <div class="comment-input-group">
+                    <input type="text" class="comment-name" placeholder="姓名">
+                    <input type="text" class="comment-text" placeholder="輸入會前意見...">
+                    <button class="btn-small">送出</button>
+                </div>
+            </div>
+
+            <div class="resolution-box">
+                🔒 會議當天解鎖：由紀錄人填寫決議結果
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="proposal-header">
+                <span class="proposal-id">第三案</span>
+                <span class="proposal-title">國家環境研究院外推活動追認案</span>
+            </div>
+            
+            <div class="proposal-field">
+                <span class="field-label">提案人：</span>林奕衡 [cite: 34]
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">案　由：</span>20260609_國家環境研究院外推活動（一群人的淨零實驗：從全食物開發到共食文化的合作社實踐）追認案 [cite: 34]
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">說　明：</span>以下為工項認領 [cite: 34]：
+                <ul>
+                    <li>企劃書：林奕衡 [cite: 34]</li>
+                    <li>結案報告：林奕衡 [cite: 34]</li>
+                    <li>講座助手(DIY活動材料分配)：待認領 [cite: 34]</li>
+                    <li>開車運送物品：待認領 [cite: 34]</li>
+                    <li>產品擺設與展售：待認領 [cite: 34]</li>
+                </ul>
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">辦　法：</span>委員討論後投票表決通過並依決議辦理 [cite: 34]。
+            </div>
+
+            <div class="comments-section">
+                <div class="field-label" style="margin-bottom: 8px;">💬 會前意見交流：</div>
+                
+                <div class="comment-input-group">
+                    <input type="text" class="comment-name" placeholder="姓名">
+                    <input type="text" class="comment-text" placeholder="輸入會前意見...">
                     <button class="btn-small">送出</button>
                 </div>
             </div>
