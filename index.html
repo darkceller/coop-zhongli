@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>共好議事雲｜中壢實驗版</title>
+    <style>
+        /* ================= 基礎變數與重置 ================= */
+        :root {
+            --primary-color: #4CAF50; /* 主婦綠 */
+            --primary-dark: #388E3C;
+            --bg-color: #F4F7F4; /* 柔和的米綠色背景，保護眼睛 */
+            --card-bg: #FFFFFF;
+            --text-main: #333333;
+            --text-light: #666666;
+            --accent-color: #FF9800; /* 狀態標籤的橘色 */
+            --border-color: #E0E0E0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, "PingFang TC", "微軟正黑體", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            /* 預留底部按鈕的空間 */
+            padding-bottom: 80px; 
+        }
+
+        /* ================= 頂部導覽列 ================= */
+        header {
+            background-color: var(--card-bg);
+            padding: 12px 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-badge {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* ================= 內容容器 ================= */
+        .container {
+            max-width: 600px; /* 限制最大寬度，讓電腦看也像手機版 */
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        /* ================= 卡片共用樣式 ================= */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ================= 會議資訊卡 ================= */
+        .info-board {
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+        }
+
+        .info-detail {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        /* ================= 可折疊報告區 ================= */
+        details {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        summary {
+            font-weight: bold;
+            padding: 12px 16px;
+            cursor: pointer;
+            list-style: none; /* 隱藏預設箭頭 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::after {
+            content: '＋';
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        details[open] summary::after {
+            content: '－';
+        }
+
+        .details-content {
+            padding: 0 16px 16px 16px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            border-top: 1px dashed var(--border-color);
+            margin-top: 8px;
+            padding-top: 8px;
+        }
+
+        /* ================= 提案卡片 ================= */
+        .proposal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .proposal-id {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .proposal-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .proposal-field {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .field-label {
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        /* ================= 意見留言區 ================= */
+        .comments-section {
+            background-color: #FAFAFA;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 16px;
+        }
+
+        .comment-item {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #E0E0E0;
+        }
+
+        .comment-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+
+        .comment-input-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .comment-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-small {
+            background-color: white;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* ================= 決議鎖定區 ================= */
+        .resolution-box {
+            background-color: #FFF3E0; /* 淺橘色底表示待處理 */
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #E65100;
+        }
+
+        /* ================= 底部固定按鈕 ================= */
+        .fab-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 12px 16px;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(76, 175, 80, 0.3);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-title">🌿 共好議事雲</div>
+        <div class="status-badge">會前討論中</div>
+    </header>
+
+    <div class="container">
+        <div class="card info-board">
+            <div class="info-title">2026 年中壢站 5 月份營運委員會</div>
+            <div class="info-detail">📅 2026/05/05 (二) 12:20~14:20</div>
+            <div class="info-detail">📍 中壢站（實體+線上同步）</div>
+            <div class="info-detail">👤 輪值主席：林奕衡 ｜ 📝 紀錄：陳春菊</div>
+        </div>
+
+        <details>
+            <summary>上次會議決議追蹤 (4/7)</summary>
+            <div class="details-content">
+                <p>✔️ <strong>區年會任務：</strong> 海報與遊戲設計已完成 (奕衡)。</p>
+                <p>🔄 <strong>環研院外推：</strong> 商品載運志工招募中，目前 1 人登記。</p>
+            </div>
+        </details>
+
+        <details>
+            <summary>各工作小組書面報告</summary>
+            <div class="details-content">
+                <p><strong>【主委報告】</strong> 鄭雅文委員已接任新竹分社副主委。</p>
+                <p><strong>【站長報告】</strong> 詳見雲端附件資料夾。</p>
+                <p><strong>【編委會】</strong> 手機攝影課程報名額滿。</p>
+            </div>
+        </details>
+
+        <div class="card">
+            <div class="proposal-header">
+                <span class="proposal-id">第一案</span>
+                <span class="proposal-title">申請教委會社基課程經費</span>
+            </div>
+            
+            <div class="proposal-field">
+                <span class="field-label">提案人：</span>林奕衡
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">說　明：</span>為深化社員對「從產地到餐桌」的連結，擬辦理「食光森林探險隊」進階課程，帶領社員前往「樸爪農園」進行植物認識與實地種植體驗。
+            </div>
+            <div class="proposal-field">
+                <span class="field-label">辦　法：</span>委員討論後投票表決通過，並至教委會申請經費。
+            </div>
+
+            <div class="comments-section">
+                <div class="field-label" style="margin-bottom: 8px;">💬 會前意見交流：</div>
+                
+                <div class="comment-item">
+                    <span class="comment-author">陳春菊：</span>
+                    這個進階課程有包含交通接駁嗎？長輩可能不方便自行前往農園。
+                </div>
+                <div class="comment-item">
+                    <span class="comment-author">洪瓊麟：</span>
+                    建議可以提早開放線上報名，確認人數後再來租車。
+                </div>
+
+                <div class="comment-input-group">
+                    <input type="text" class="comment-input" placeholder="輸入您的會前意見...">
+                    <button class="btn-small">送出</button>
+                </div>
+            </div>
+
+            <div class="resolution-box">
+                🔒 會議當天解鎖：由紀錄人填寫決議結果
+            </div>
+        </div>
+
+    </div>
+
+    <div class="fab-container">
+        <button class="btn-primary">＋ 新增臨時動議</button>
+    </div>
+
+</body>
+</html>
